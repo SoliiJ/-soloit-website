@@ -1,17 +1,321 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://soloit.pl/#webpage",
+  url: "https://soloit.pl/",
+  name: "SoloIT – Strony internetowe i automatyzacja na Śląsku",
+  description: "Freelance deweloper tworzący nowoczesne strony WWW na WordPress oraz skrypty automatyzujące. Serwis IT z dojazdem – Ruda Śląska, Mikołów, Gliwice.",
+  isPartOf: { "@id": "https://soloit.pl/#business" }
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="SoloIT – Tworzenie Stron WWW & Automatyzacja | Ruda Śląska"
+  description="Freelance deweloper. Nowoczesne strony internetowe na WordPress, skrypty automatyzujące, serwis IT z dojazdem. Ruda Śląska, Mikołów, Gliwice i cały Śląsk."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="relative min-h-[90vh] flex items-center hero-mesh overflow-hidden pt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-void pointer-events-none" />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="max-w-3xl">
+        <div class="reveal">
+          <span class="pill mb-6 inline-flex">Freelance Developer · Śląsk</span>
+        </div>
+
+        <h1 class="reveal reveal-delay-1 font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-cream leading-[1.1] tracking-tight mb-6">
+          Tworzę strony, <br />
+          które <span class="gradient-text">sprzedają.</span>
+        </h1>
+
+        <p class="reveal reveal-delay-2 text-lg sm:text-xl text-cream-muted leading-relaxed max-w-2xl mb-10">
+          Projektuję nowoczesne strony internetowe na WordPress i piszę skrypty automatyzujące 
+          Twoją pracę. Z dojazdem do klienta na terenie <strong class="text-cream">Rudy Śląskiej, Mikołowa, Gliwic</strong> i całego Śląska.
+        </p>
+
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-4 mb-16">
+          <a href="/uslugi/strony-internetowe/" class="btn-primary">
+            Zamów stronę WWW
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+          </a>
+          <a href="/portfolio/" class="btn-secondary">
+            Zobacz portfolio
+          </a>
+        </div>
+
+        <div class="reveal reveal-delay-4 flex flex-wrap gap-8 sm:gap-12">
+          <div>
+            <div class="font-display font-bold text-2xl sm:text-3xl text-gold">50+</div>
+            <div class="text-sm text-cream-dim mt-1">wdrożonych stron</div>
+          </div>
+          <div class="w-px bg-gold/10 hidden sm:block" />
+          <div>
+            <div class="font-display font-bold text-2xl sm:text-3xl text-gold">7 lat</div>
+            <div class="text-sm text-cream-dim mt-1">doświadczenia w IT</div>
+          </div>
+          <div class="w-px bg-gold/10 hidden sm:block" />
+          <div>
+            <div class="font-display font-bold text-2xl sm:text-3xl text-gold">&lt;24h</div>
+            <div class="text-sm text-cream-dim mt-1">czas odpowiedzi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="absolute right-0 top-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+    <div class="absolute left-1/4 bottom-0 w-64 h-64 bg-gold/3 rounded-full blur-3xl pointer-events-none" />
+  </section>
+
+  <!-- SERVICES -->
+  <section class="py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="pill mb-4 inline-flex">Usługi</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream mb-4">
+          W czym mogę pomóc?
+        </h2>
+        <p class="text-cream-muted text-lg">
+          Od stron internetowych przez automatyzację po serwis sprzętu – kompleksowa obsługa IT.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Main service: Websites -->
+        <a href="/uslugi/strony-internetowe/" class="reveal card-glow group relative rounded-xl bg-surface p-8 border border-gold/10 hover:border-gold/30">
+          <div class="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-cream mb-3 group-hover:text-gold transition-colors">Strony internetowe</h3>
+          <p class="text-cream-dim leading-relaxed mb-6">
+            Nowoczesne strony na WordPress i WooCommerce. Responsywne, szybkie i zoptymalizowane pod SEO. Od wizytówki po rozbudowany sklep.
+          </p>
+          <span class="inline-flex items-center gap-2 text-gold font-display font-medium text-sm group-hover:gap-3 transition-all">
+            Dowiedz się więcej
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+          </span>
+        </a>
+
+        <!-- Main service: Automation -->
+        <a href="/uslugi/automatyzacja/" class="reveal reveal-delay-1 card-glow group relative rounded-xl bg-surface p-8 border border-gold/10 hover:border-gold/30">
+          <div class="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-cream mb-3 group-hover:text-gold transition-colors">Automatyzacja</h3>
+          <p class="text-cream-dim leading-relaxed mb-6">
+            Skrypty Python, boty, integracje API i makra. Oszczędzam Twój czas eliminując powtarzalne czynności w firmie.
+          </p>
+          <span class="inline-flex items-center gap-2 text-gold font-display font-medium text-sm group-hover:gap-3 transition-all">
+            Dowiedz się więcej
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+          </span>
+        </a>
+
+        <!-- Secondary: IT Service -->
+        <a href="/uslugi/serwis-it/" class="reveal reveal-delay-2 card-glow group relative rounded-xl bg-surface p-8 border border-gold/10 hover:border-gold/30">
+          <div class="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-cream mb-3 group-hover:text-gold transition-colors">Serwis IT</h3>
+          <p class="text-cream-dim leading-relaxed mb-6">
+            Naprawa komputerów i laptopów, konfiguracja sieci WiFi, składanie PC, digitalizacja VHS. Z dojazdem do klienta.
+          </p>
+          <span class="inline-flex items-center gap-2 text-gold font-display font-medium text-sm group-hover:gap-3 transition-all">
+            Dowiedz się więcej
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO PREVIEW -->
+  <section class="py-24 sm:py-32 bg-void-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="pill mb-4 inline-flex">Portfolio</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream">
+            Wybrane realizacje
+          </h2>
+        </div>
+        <a href="/portfolio/" class="btn-secondary self-start sm:self-auto">
+          Zobacz wszystkie
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Mockup 1: Business website -->
+        <div class="reveal mockup-frame group cursor-pointer">
+          <div class="aspect-[4/3] bg-gradient-to-br from-slate-800 to-slate-900 p-4 flex flex-col">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+              <div class="flex-1 h-5 rounded bg-white/5 ml-2" />
+            </div>
+            <div class="flex-1 rounded bg-white/[0.03] p-3 space-y-2">
+              <div class="h-3 w-1/3 rounded bg-gold/20" />
+              <div class="h-8 w-2/3 rounded bg-white/10" />
+              <div class="h-3 w-full rounded bg-white/5" />
+              <div class="h-3 w-5/6 rounded bg-white/5" />
+              <div class="flex gap-2 mt-4">
+                <div class="h-6 w-16 rounded bg-gold/20" />
+                <div class="h-6 w-16 rounded bg-white/5" />
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-semibold text-cream mb-1">Strona firmowa</h3>
+            <p class="text-sm text-cream-dim">WordPress · Elementor · SEO</p>
+          </div>
+        </div>
+
+        <!-- Mockup 2: E-commerce -->
+        <div class="reveal reveal-delay-1 mockup-frame group cursor-pointer">
+          <div class="aspect-[4/3] bg-gradient-to-br from-stone-800 to-stone-900 p-4 flex flex-col">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+              <div class="flex-1 h-5 rounded bg-white/5 ml-2" />
+            </div>
+            <div class="flex-1 rounded bg-white/[0.03] p-3">
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                <div class="aspect-square rounded bg-white/5" />
+                <div class="aspect-square rounded bg-white/5" />
+              </div>
+              <div class="h-3 w-1/2 rounded bg-gold/20 mb-2" />
+              <div class="h-3 w-full rounded bg-white/5" />
+              <div class="h-6 w-20 rounded bg-gold/30 mt-3" />
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-semibold text-cream mb-1">Sklep WooCommerce</h3>
+            <p class="text-sm text-cream-dim">WooCommerce · Płatności online</p>
+          </div>
+        </div>
+
+        <!-- Mockup 3: Landing page -->
+        <div class="reveal reveal-delay-2 mockup-frame group cursor-pointer">
+          <div class="aspect-[4/3] bg-gradient-to-br from-zinc-800 to-zinc-900 p-4 flex flex-col">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+              <div class="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+              <div class="flex-1 h-5 rounded bg-white/5 ml-2" />
+            </div>
+            <div class="flex-1 rounded bg-white/[0.03] p-3 flex flex-col items-center justify-center text-center space-y-2">
+              <div class="h-4 w-3/4 rounded bg-gold/20" />
+              <div class="h-3 w-full rounded bg-white/5" />
+              <div class="h-3 w-5/6 rounded bg-white/5" />
+              <div class="h-8 w-32 rounded bg-gold/30 mt-2" />
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-semibold text-cream mb-1">Landing page</h3>
+            <p class="text-sm text-cream-dim">Astro · Konwersja · Szybkość</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST / ABOUT TEASER -->
+  <section class="py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <span class="pill mb-4 inline-flex">Dlaczego ja?</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-cream mb-6">
+            Technologia bez <span class="gradient-text">corporate bullshitu</span>
+          </h2>
+          <p class="text-cream-muted text-lg leading-relaxed mb-6">
+            Nie jestem agencją z pięcioma pośrednikami i godzinami spotkań. Jeden człowiek, pełna odpowiedzialność. 
+            Znam się na kodzie, designie i SEO – więc Twoja strona nie tylko ładnie wygląda, ale też przyciąga klientów.
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-cream-muted">Bezpośredni kontakt – rozmawiasz z osobą, która koduje</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-cream-muted">Ceny bez ukrytych kosztów – wycena przed startem</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-cream-muted">Lokalny deweloper – rozumiem rynek śląski</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-cream-muted">Wsparcie po wdrożeniu – nie zostawiam klientów</span>
+            </li>
+          </ul>
+          <a href="/o-mnie/" class="btn-secondary">
+            Poznaj mnie lepiej
+          </a>
+        </div>
+
+        <div class="reveal reveal-delay-1 relative">
+          <div class="absolute -inset-4 bg-gradient-to-br from-gold/10 to-transparent rounded-2xl blur-2xl" />
+          <div class="relative bg-surface rounded-xl border border-gold/10 p-8">
+            <blockquote class="text-xl text-cream leading-relaxed italic mb-6">
+              „Potrzebowałem prostej strony dla firmy usługowej. Efekt przeszedł moje oczekiwania – szybka, ładna i Google już ją widzi. Polecam każdemu kto szuka kogoś lokalnego i rzetelnego.”
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center font-display font-bold text-gold">TB</div>
+              <div>
+                <div class="font-display font-semibold text-cream">Tomasz B.</div>
+                <div class="text-sm text-cream-dim">Gliwice · strona internetowa WordPress</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 sm:py-32 bg-void-light relative overflow-hidden">
+    <div class="absolute inset-0 hero-mesh opacity-50" />
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="reveal font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream mb-6">
+        Gotowy na <span class="gradient-text">nową stronę?</span>
+      </h2>
+      <p class="reveal reveal-delay-1 text-cream-muted text-lg mb-10 max-w-2xl mx-auto">
+        Niezobowiązująca wycena w ciągu 24h. Powiedz mi czego potrzebujesz, a ja przygotuję 
+        dopasowane rozwiązanie i transparentny kosztorys.
+      </p>
+      <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-4">
+        <a href="mailto:kontakt@soloit.pl" class="btn-primary">
+          Napisz do mnie
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+        </a>
+        <a href="tel:+48663821462" class="btn-secondary">
+          Zadzwoń: 663 821 462
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA -->
+  <section class="py-16 sm:py-24 border-t border-gold/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="font-display font-semibold text-xl text-cream mb-2">Obsługuję cały Śląsk</h2>
+        <p class="text-cream-dim">Serwis z dojazdem do klienta</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3">
+        {['Ruda Śląska', 'Mikołów', 'Gliwice', 'Katowice', 'Zabrze', 'Bytom', 'Tychy', 'Chorzów', 'Sosnowiec', 'Dąbrowa Górnicza', 'Bielsko-Biała', 'Pszczyna', 'Czechowice-Dziedzice', 'Żory', 'Jastrzębie-Zdrój', 'Rybnik', 'Wodzisław Śląski'].map(city => (
+          <span class="px-3 py-1.5 rounded-full bg-surface border border-gold/10 text-sm text-cream-muted">{city}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "Wpisy"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: "Tytuł", name: "title", widget: "string", required: true }
+      - { label: "Opis (SEO)", name: "description", widget: "text", required: true }
+      - { label: "Data publikacji", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Data aktualizacji", name: "updatedDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - label: "Kategoria"
+        name: "category"
+        widget: "select"
+        options: ["Strony WWW", "Automatyzacja", "SEO", "Serwis IT", "Porady"]
+        default: "Porady"
+      - { label: "Tagi", name: "tags", widget: "list", allow_add: true, required: false }
+      - { label: "Wyróżniony", name: "featured", widget: "boolean", default: false }
+      - { label: "Treść", name: "body", widget: "markdown" }

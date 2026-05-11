@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Serwis komputerowy i naprawa IT",
+  provider: { "@id": "https://soloit.pl/#business" },
+  areaServed: { "@type": "Place", name: "Śląsk, Polska" }
+};
+
+const services = [
+  { title: 'Naprawa laptopów i PC', desc: 'Diagnoza, wymiana podzespołów, czyszczenie, naprawa po zalaniu.', icon: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25' },
+  { title: 'Konfiguracja WiFi', desc: 'Pełen zasięg w domu lub firmie, mesh, optymalizacja kanałów.', icon: 'M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.75 17.25v1.5m0-1.5a2.25 2.25 0 11-4.5 0m4.5 0a2.25 2.25 0 104.5 0' },
+  { title: 'Składanie PC', desc: 'Dobór podzespołów pod budżet i zastosowanie, montaż, testy.', icon: 'M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z' },
+  { title: 'Digitalizacja VHS', desc: 'Przegrywanie kaset VHS na pendrive, dysk lub chmurę.', icon: 'm15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25z' },
+];
+---
+
+<BaseLayout
+  title="Serwis Komputerowy – Naprawa Laptopów, WiFi, PC | Ruda Śląska"
+  description="Profesjonalny serwis IT z dojazdem. Naprawa laptopów i komputerów, konfiguracja WiFi, składanie PC, digitalizacja VHS. Ruda Śląska, Mikołów, Gliwice."
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Usługi', item: '/uslugi/' },
+    { name: 'Serwis IT', item: '/uslugi/serwis-it/' }
+  ]}
+>
+  <section class="pt-32 pb-16 hero-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">Serwis IT</span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-cream mb-6 max-w-3xl">
+        Naprawa komputerów <span class="gradient-text">z dojazdem</span>
+      </h1>
+      <p class="text-cream-muted text-lg max-w-2xl mb-8">
+        Nie musisz wnosić sprzętu do serwisu – przyjadę do Ciebie. Naprawa laptopów, konfiguracja sieci, 
+        składanie PC i digitalizacja VHS na terenie Rudy Śląskiej, Mikołowa, Gliwic i okolic.
+      </p>
+      <a href="tel:+48663821462" class="btn-primary">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+        Zadzwoń: 663 821 462
+      </a>
+    </div>
+  </section>
+
+  <section class="py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {services.map((s, i) => (
+          <div class="reveal card-glow rounded-xl bg-surface p-8 border border-gold/10" style={`transition-delay: ${i * 100}ms`}>
+            <div class="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={s.icon} /></svg>
+            </div>
+            <h3 class="font-display font-semibold text-xl text-cream mb-2">{s.title}</h3>
+            <p class="text-cream-dim leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-void-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display font-bold text-2xl text-cream mb-4">Awaria? Działam 7 dni w tygodniu</h2>
+      <p class="text-cream-muted mb-8">Zadzwoń lub napisz – w większości przypadków przyjeżdżam tego samego lub następnego dnia.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="tel:+48663821462" class="btn-primary">Zadzwoń teraz</a>
+        <a href="mailto:kontakt@soloit.pl" class="btn-secondary">Napisz maila</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

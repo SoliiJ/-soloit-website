@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Strony internetowe',
+    href: '/uslugi/strony-internetowe/',
+    desc: 'Nowoczesne strony na WordPress i WooCommerce. Responsywne, szybkie i zoptymalizowane pod SEO.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />`,
+    features: ['WordPress & WooCommerce', 'Responsywny design', 'Optymalizacja SEO', 'Szybkość LCP < 2.5s']
+  },
+  {
+    title: 'Automatyzacja',
+    href: '/uslugi/automatyzacja/',
+    desc: 'Skrypty Python, boty, integracje API i makra. Eliminuję powtarzalne czynności w firmie.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />`,
+    features: ['Skrypty Python', 'Integracje API', 'Boty i scrapery', 'Makra i workflow']
+  },
+  {
+    title: 'Serwis IT',
+    href: '/uslugi/serwis-it/',
+    desc: 'Naprawa komputerów i laptopów, konfiguracja sieci WiFi, składanie PC, digitalizacja VHS.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />`,
+    features: ['Naprawa laptopów i PC', 'Konfiguracja WiFi', 'Składanie komputerów', 'Digitalizacja VHS']
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: services.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: s.title,
+    url: `https://soloit.pl${s.href}`
+  }))
+};
+---
+
+<BaseLayout
+  title="Usługi – Strony WWW, Automatyzacja, Serwis IT | SoloIT"
+  description="Pełen zakres usług IT SoloIT: tworzenie stron internetowych, skrypty automatyzujące, serwis komputerowy z dojazdem na Śląsku."
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Usługi', item: '/uslugi/' }
+  ]}
+>
+  <section class="pt-32 pb-16 hero-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">Usługi</span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-cream mb-6">
+        W czym mogę <span class="gradient-text">pomóc?</span>
+      </h1>
+      <p class="text-cream-muted text-lg max-w-2xl">
+        Od stron internetowych przez automatyzację po serwis sprzętu – kompleksowa obsługa IT 
+        dla osób prywatnych i małych firm na Śląsku.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      {services.map((service, idx) => (
+        <a href={service.href} class="reveal block group">
+          <div class="card-glow rounded-xl bg-surface border border-gold/10 hover:border-gold/30 p-8 lg:p-10 transition-all">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-1">
+                <div class="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                  <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" set:html={service.icon} />
+                </div>
+              </div>
+              <div class="lg:col-span-7">
+                <h2 class="font-display font-bold text-2xl text-cream mb-3 group-hover:text-gold transition-colors">{service.title}</h2>
+                <p class="text-cream-muted leading-relaxed">{service.desc}</p>
+              </div>
+              <div class="lg:col-span-4">
+                <ul class="space-y-2">
+                  {service.features.map(f => (
+                    <li class="flex items-center gap-2 text-sm text-cream-dim">
+                      <svg class="w-4 h-4 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-16 bg-void-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display font-bold text-2xl text-cream mb-4">Nie wiesz, czego potrzebujesz?</h2>
+      <p class="text-cream-muted mb-8">Opisz swój problem, a ja zaproponuję najlepsze rozwiązanie – bez żargonu i przepłacania.</p>
+      <a href="mailto:kontakt@soloit.pl" class="btn-primary">Bezpłatna konsultacja</a>
+    </div>
+  </section>
+</BaseLayout>

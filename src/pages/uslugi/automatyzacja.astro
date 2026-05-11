@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Automatyzacja procesów IT",
+  provider: { "@id": "https://soloit.pl/#business" },
+  areaServed: { "@type": "Place", name: "Śląsk, Polska" }
+};
+
+const examples = [
+  { title: 'Boty i scrapery', desc: 'Zbieranie danych z konkurencji, monitoring cen, automatyczne pobieranie faktur.' },
+  { title: 'Integracje API', desc: 'Połączenie Twojego sklepu z Baselinkerem, Fakturowaniem, Google Sheets czy CRM.' },
+  { title: 'Makra Excel / Google Sheets', desc: 'Automatyczne raporty, przetwarzanie danych, generowanie zestawień jednym kliknięciem.' },
+  { title: 'Powiadomienia i alerty', desc: 'Automatyczne maile/SMSy gdy coś się dzieje – np. brak towaru, nowe zamówienie, błąd na stronie.' }
+];
+---
+
+<BaseLayout
+  title="Automatyzacja Procesów – Skrypty Python & Boty | SoloIT Śląsk"
+  description="Tworzę skrypty automatyzujące, boty, integracje API i makra. Oszczędzam Twój czas eliminując powtarzalne czynności. Ruda Śląska i cały Śląsk."
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Usługi', item: '/uslugi/' },
+    { name: 'Automatyzacja', item: '/uslugi/automatyzacja/' }
+  ]}
+>
+  <section class="pt-32 pb-16 hero-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">Automatyzacja</span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-cream mb-6 max-w-3xl">
+        Niech komputer <span class="gradient-text">pracuje za Ciebie</span>
+      </h1>
+      <p class="text-cream-muted text-lg max-w-2xl mb-8">
+        Każdego dnia tracisz godziny na powtarzalne klikanie, kopiowanie i przepisywanie danych? 
+        Napiszę skrypt, który zrobi to za Ciebie – szybciej i bezbłędnie.
+      </p>
+      <a href="mailto:kontakt@soloit.pl" class="btn-primary">Opisz swój problem</a>
+    </div>
+  </section>
+
+  <section class="py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="pill mb-4 inline-flex">Co automatyzuję?</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-cream mb-4">Przykłady zastosowań</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {examples.map((ex, i) => (
+          <div class="reveal card-glow rounded-xl bg-surface p-8 border border-gold/10" style={`transition-delay: ${i * 100}ms`}>
+            <h3 class="font-display font-semibold text-xl text-cream mb-3">{ex.title}</h3>
+            <p class="text-cream-dim leading-relaxed">{ex.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-void-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display font-bold text-2xl text-cream mb-4">Ile czasu tracisz na powtarzalne czynności?</h2>
+      <p class="text-cream-muted mb-8">Opisz mi swój proces – jeśli da się go zautomatyzować, powiem Ci jak i za ile.</p>
+      <a href="mailto:kontakt@soloit.pl" class="btn-primary">Bezpłatna konsultacja</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Strona nie została znaleziona | SoloIT"
+  description="Przepraszamy, ale strona której szukasz nie istnieje."
+  noindex={true}
+>
+  <section class="min-h-[70vh] flex items-center justify-center pt-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="font-display font-bold text-8xl sm:text-9xl text-gold/10 mb-4">404</div>
+      <h1 class="font-display font-bold text-3xl sm:text-4xl text-cream mb-4">
+        Strona nie została znaleziona
+      </h1>
+      <p class="text-cream-muted text-lg mb-8">
+        Przepraszamy, ale strona której szukasz nie istnieje lub została przeniesiona.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/" class="btn-primary">Strona główna</a>
+        <a href="/uslugi/" class="btn-secondary">Usługi</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

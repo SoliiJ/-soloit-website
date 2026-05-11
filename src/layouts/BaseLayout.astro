@@ -1,0 +1,176 @@
+---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  breadcrumbs?: { name: string; item: string }[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://soloit.pl/og-image.png',
+  schema,
+  breadcrumbs,
+  noindex = false,
+} = Astro.props;
+
+const site = 'https://soloit.pl';
+const canonicalUrl = canonical ? (canonical.startsWith('http') ? canonical : `${site}${canonical}`) : `${site}${Astro.url.pathname}`;
+
+// Default LocalBusiness schema for reuse
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${site}/#business`,
+  name: "SoloIT",
+  image: `${site}/logo.png`,
+  url: site,
+  telephone: "+48-663-821-462",
+  email: "kontakt@soloit.pl",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ruda Śląska",
+    addressRegion: "śląskie",
+    addressCountry: "PL"
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "50.296",
+    longitude: "18.856"
+  },
+  areaServed: [
+    { "@type": "City", name: "Ruda Śląska" },
+    { "@type": "City", name: "Mikołów" },
+    { "@type": "City", name: "Gliwice" },
+    { "@type": "City", name: "Katowice" },
+    { "@type": "City", name: "Zabrze" },
+    { "@type": "City", name: "Bytom" },
+    { "@type": "City", name: "Tychy" },
+    { "@type": "City", name: "Chorzów" },
+    { "@type": "City", name: "Sosnowiec" },
+    { "@type": "City", name: "Dąbrowa Górnicza" },
+    { "@type": "City", name: "Bielsko-Biała" },
+    { "@type": "City", name: "Pszczyna" },
+    { "@type": "City", name: "Czechowice-Dziedzice" },
+    { "@type": "City", name: "Żory" },
+    { "@type": "City", name: "Jastrzębie-Zdrój" },
+    { "@type": "City", name: "Rybnik" },
+    { "@type": "City", name: "Wodzisław Śląski" },
+  ],
+  serviceType: [
+    "Tworzenie stron internetowych",
+    "Skrypty automatyzujące",
+    "Serwis komputerowy",
+    "Naprawa laptopów",
+    "Konfiguracja WiFi",
+    "Digitalizacja VHS",
+    "Składanie PC"
+  ],
+  priceRange: "$$",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "08:00",
+    closes: "20:00"
+  }
+};
+
+// BreadcrumbList schema
+const breadcrumbSchema = breadcrumbs ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: crumb.item.startsWith('http') ? crumb.item : `${site}${crumb.item}`
+  }))
+} : null;
+
+const allSchemas = [
+  localBusinessSchema,
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+  ...(breadcrumbSchema ? [breadcrumbSchema] : [])
+];
+---
+
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="generator" content={Astro.generator} />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  {!noindex && <meta name="robots" content="index, follow" />}
+  <meta name="author" content="SoloIT" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:site_name" content="SoloIT" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+
+  <!-- JSON-LD -->
+  {allSchemas.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify(allSchemas.length === 1 ? allSchemas[0] : allSchemas)} />
+  )}
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <Navigation />
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Scroll reveal -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

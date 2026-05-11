@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Blog SoloIT",
+  url: "https://soloit.pl/blog/",
+  description: "Blog o tworzeniu stron internetowych, automatyzacji i SEO dla firm z Śląska.",
+  blogPost: posts.map(p => ({
+    "@type": "BlogPosting",
+    headline: p.data.title,
+    description: p.data.description,
+    url: `https://soloit.pl/blog/${p.id}/`,
+    datePublished: p.data.pubDate.toISOString(),
+    ...(p.data.updatedDate && { dateModified: p.data.updatedDate.toISOString() }),
+  }))
+};
+---
+
+<BaseLayout
+  title="Blog – Strony WWW, SEO i Automatyzacja | SoloIT"
+  description="Porady o tworzeniu stron internetowych, SEO lokalnym i automatyzacji procesów. Blog dla firm z Rudy Śląskiej i całego Śląska."
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Blog', item: '/blog/' }
+  ]}
+>
+  <section class="pt-32 pb-16 hero-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">Blog</span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-cream mb-6">
+        Wiedza, która <span class="gradient-text">sprzedaje</span>
+      </h1>
+      <p class="text-cream-muted text-lg max-w-2xl">
+        Porady o stronach internetowych, SEO lokalnym i automatyzacji. Dla firm z Rudy Śląskiej, 
+        Mikołowa, Gliwic i każdego, kto chce więcej z technologii.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {posts.length === 0 ? (
+        <div class="text-center py-24">
+          <p class="text-cream-dim text-lg">Wpisy pojawią się wkrótce. Obserwuj bloga!</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post, i) => (
+            <a href={`/blog/${post.id}/`} class="reveal group" style={`transition-delay: ${i * 100}ms`}>
+              <article class="card-glow rounded-xl bg-surface border border-gold/10 hover:border-gold/30 overflow-hidden h-full flex flex-col transition-all">
+                <div class="aspect-[16/9] bg-gradient-to-br from-void-lighter to-surface-raised flex items-center justify-center">
+                  <span class="font-display font-bold text-4xl text-gold/20 group-hover:text-gold/40 transition-colors">
+                    {post.data.category.charAt(0)}
+                  </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span class="pill text-[10px]">{post.data.category}</span>
+                    <span class="text-xs text-cream-dim/60">
+                      {post.data.pubDate.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                  </div>
+                  <h2 class="font-display font-semibold text-lg text-cream mb-2 group-hover:text-gold transition-colors line-clamp-2">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-cream-dim text-sm leading-relaxed line-clamp-3 flex-1">
+                    {post.data.description}
+                  </p>
+                  <span class="inline-flex items-center gap-2 text-gold font-display font-medium text-sm mt-4 group-hover:gap-3 transition-all">
+                    Czytaj dalej
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+                  </span>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<'posts'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  url: `https://soloit.pl/blog/${post.id}/`,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+  author: {
+    "@type": "Person",
+    name: "SoloIT",
+    url: "https://soloit.pl/o-mnie/"
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "SoloIT",
+    logo: { "@type": "ImageObject", url: "https://soloit.pl/logo.png" }
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://soloit.pl/blog/${post.id}/`
+  }
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | Blog SoloIT`}
+  description={post.data.description}
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Blog', item: '/blog/' },
+    { name: post.data.title, item: `/blog/${post.id}/` }
+  ]}
+>
+  <article class="pt-32 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">{post.data.category}</span>
+      <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream mb-6 leading-tight">
+        {post.data.title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-sm text-cream-dim mb-10 pb-10 border-b border-gold/10">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {post.data.updatedDate && (
+          <>
+            <span>·</span>
+            <span>Aktualizacja: {post.data.updatedDate.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          </>
+        )}
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:text-cream prose-p:text-cream-muted prose-a:text-gold hover:prose-a:text-gold-light prose-strong:text-cream prose-code:text-gold prose-pre:bg-surface prose-pre:border prose-pre:border-gold/10 prose-blockquote:border-gold/30 prose-blockquote:text-cream-muted prose-li:text-cream-muted">
+        <Content />
+      </div>
+
+      {post.data.tags.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-gold/10">
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map(tag => (
+              <span class="px-3 py-1.5 rounded-full bg-surface border border-gold/10 text-sm text-cream-dim">{tag}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="mt-16 p-8 rounded-xl bg-surface border border-gold/10 text-center">
+        <h3 class="font-display font-semibold text-xl text-cream mb-2">Podobał się artykuł?</h3>
+        <p class="text-cream-muted mb-6">Jeśli masz pytania lub potrzebujesz pomocy ze stroną – napisz do mnie.</p>
+        <a href="mailto:kontakt@soloit.pl" class="btn-primary">Skontaktuj się</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

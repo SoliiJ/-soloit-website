@@ -1,0 +1,119 @@
+---
+const navLinks = [
+  { href: '/uslugi/', label: 'Usługi' },
+  { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/o-mnie/', label: 'O mnie' },
+];
+---
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 group" aria-label="SoloIT – strona główna">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-void font-bold font-display text-sm">
+          S
+        </div>
+        <span class="font-display font-bold text-lg tracking-tight text-cream group-hover:text-gold transition-colors">
+          Solo<span class="text-gold">IT</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="text-sm font-display font-medium text-cream-muted hover:text-gold transition-colors relative group"
+          >
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden md:block">
+        <a href="/uslugi/strony-internetowe/" class="btn-primary text-sm py-2.5 px-5">
+          Zamów stronę
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        class="md:hidden flex flex-col gap-1.5 p-2"
+        aria-label="Otwórz menu"
+        aria-expanded="false"
+      >
+        <span class="block w-6 h-px bg-cream transition-all duration-300 origin-center" id="line-1" />
+        <span class="block w-6 h-px bg-cream transition-all duration-300" id="line-2" />
+        <span class="block w-4 h-px bg-cream transition-all duration-300 origin-center" id="line-3" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden absolute top-full left-0 right-0 glass border-t border-gold/10 opacity-0 pointer-events-none transition-all duration-300 -translate-y-2"
+    aria-hidden="true"
+  >
+    <div class="px-4 py-6 space-y-4">
+      {navLinks.map(link => (
+        <a href={link.href} class="block text-lg font-display font-medium text-cream hover:text-gold transition-colors">
+          {link.label}
+        </a>
+      ))}
+      <a href="/uslugi/strony-internetowe/" class="btn-primary w-full justify-center mt-4">
+        Zamów stronę
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line-1');
+  const line2 = document.getElementById('line-2');
+  const line3 = document.getElementById('line-3');
+  let open = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      nav?.classList.add('glass', 'border-gold/10');
+      nav?.classList.remove('border-transparent');
+    } else {
+      nav?.classList.remove('glass', 'border-gold/10');
+      nav?.classList.add('border-transparent');
+    }
+  }, { passive: true });
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu?.setAttribute('aria-hidden', String(!open));
+
+    if (open) {
+      menu?.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+      line1?.classList.add('rotate-45', 'translate-y-2');
+      line2?.classList.add('opacity-0');
+      line3?.classList.add('-rotate-45', '-translate-y-1', 'w-6');
+    } else {
+      menu?.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-1', 'w-6');
+    }
+  });
+
+  // Close menu on link click
+  menu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (open) toggle?.click();
+    });
+  });
+</script>

@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Klinika Medyczna',
+    category: 'Strona firmowa',
+    tags: 'WordPress · Elementor · SEO',
+    colors: ['from-teal-900', 'to-emerald-950'],
+    blocks: [
+      { h: 'h-4', w: 'w-1/3', bg: 'bg-gold/20' },
+      { h: 'h-10', w: 'w-2/3', bg: 'bg-white/10' },
+      { h: 'h-3', w: 'w-full', bg: 'bg-white/5' },
+      { h: 'h-3', w: 'w-5/6', bg: 'bg-white/5' },
+      { h: 'h-8', w: 'w-24', bg: 'bg-gold/30', mt: true }
+    ]
+  },
+  {
+    title: 'Sklep Odzieżowy',
+    category: 'WooCommerce',
+    tags: 'WooCommerce · Płatności · Filtry',
+    colors: ['from-rose-900', 'to-pink-950'],
+    grid: true
+  },
+  {
+    title: 'Landing SaaS',
+    category: 'Landing page',
+    tags: 'Astro · Tailwind · Konwersja',
+    colors: ['from-indigo-900', 'to-violet-950'],
+    center: true
+  },
+  {
+    title: 'Restauracja',
+    category: 'Strona firmowa',
+    tags: 'WordPress · Menu online · Rezerwacje',
+    colors: ['from-amber-900', 'to-orange-950'],
+    blocks: [
+      { h: 'h-4', w: 'w-1/2', bg: 'bg-gold/20' },
+      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
+      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
+      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
+    ]
+  },
+  {
+    title: 'Blog Korporacyjny',
+    category: 'Blog',
+    tags: 'WordPress · Gutenberg · AMP',
+    colors: ['from-slate-800', 'to-slate-950'],
+    blocks: [
+      { h: 'h-4', w: 'w-1/3', bg: 'bg-gold/20' },
+      { h: 'h-6', w: 'w-full', bg: 'bg-white/10' },
+      { h: 'h-3', w: 'w-full', bg: 'bg-white/5' },
+      { h: 'h-3', w: 'w-4/5', bg: 'bg-white/5' },
+      { h: 'h-20', w: 'w-full', bg: 'bg-white/5', mt: true }
+    ]
+  },
+  {
+    title: 'Salon Samochodowy',
+    category: 'Strona firmowa',
+    tags: 'WordPress · Galeria · Formularze',
+    colors: ['from-cyan-900', 'to-blue-950'],
+    grid: true
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: projects.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.title,
+    description: `${p.category} – ${p.tags}`
+  }))
+};
+---
+
+<BaseLayout
+  title="Portfolio – Realizacje Stron WWW | SoloIT"
+  description="Zobacz wybrane realizacje stron internetowych: WordPress, WooCommerce, landing pages. Portfolio dewelopera z Rudy Śląskiej."
+  schema={schema}
+  breadcrumbs={[
+    { name: 'Strona główna', item: '/' },
+    { name: 'Portfolio', item: '/portfolio/' }
+  ]}
+>
+  <section class="pt-32 pb-16 hero-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="pill mb-4 inline-flex">Portfolio</span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-cream mb-6 max-w-3xl">
+        Twoja strona może <span class="gradient-text">tak wyglądać</span>
+      </h1>
+      <p class="text-cream-muted text-lg max-w-2xl">
+        Poniżej znajdziesz przykłady stron, które projektuję dla moich klientów. 
+        Każda z nich jest dopasowana do branży, responsywna i zoptymalizowana pod wyszukiwarki.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, i) => (
+          <div class="reveal mockup-frame group" style={`transition-delay: ${i * 100}ms`}>
+            <div class={`aspect-[4/3] bg-gradient-to-br ${project.colors[0]} ${project.colors[1]} p-4 flex flex-col`}>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
+                <div class="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+                <div class="flex-1 h-5 rounded bg-white/5 ml-2" />
+              </div>
+              <div class="flex-1 rounded bg-white/[0.03] p-3 space-y-2 flex flex-col">
+                {project.center && (
+                  <div class="flex-1 flex flex-col items-center justify-center text-center space-y-2">
+                    <div class="h-4 w-3/4 rounded bg-gold/20" />
+                    <div class="h-3 w-full rounded bg-white/5" />
+                    <div class="h-3 w-5/6 rounded bg-white/5" />
+                    <div class="h-8 w-32 rounded bg-gold/30 mt-2" />
+                  </div>
+                )}
+                {project.grid && (
+                  <>
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                      <div class="aspect-square rounded bg-white/5" />
+                      <div class="aspect-square rounded bg-white/5" />
+                    </div>
+                    <div class="h-3 w-1/2 rounded bg-gold/20" />
+                    <div class="h-3 w-full rounded bg-white/5" />
+                    <div class="h-6 w-20 rounded bg-gold/30 mt-auto" />
+                  </>
+                )}
+                {project.blocks && project.blocks.map(b => (
+                  <div class={`${b.h} ${b.w} rounded ${b.bg} ${b.mt ? 'mt-auto' : ''}`} />
+                ))}
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-display font-semibold text-cream mb-1">{project.title}</h3>
+              <p class="text-sm text-cream-dim mb-2">{project.category}</p>
+              <p class="text-xs text-cream-dim/60 font-mono">{project.tags}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-void-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display font-bold text-2xl text-cream mb-4">Chcesz podobną stronę?</h2>
+      <p class="text-cream-muted mb-8">Opisz swoją branżę, a ja przygotuję projekt dopasowany do Twoich potrzeb.</p>
+      <a href="mailto:kontakt@soloit.pl" class="btn-primary">Darmowa wycena</a>
+    </div>
+  </section>
+</BaseLayout>
