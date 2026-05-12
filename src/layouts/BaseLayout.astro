@@ -35,7 +35,7 @@ const localBusinessSchema = {
   image: `${site}/logo.png`,
   url: site,
   telephone: "+48-663-821-462",
-  email: "kontakt@soloit.pl",
+  email: "soloitkontakt@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Ruda Śląska",
@@ -146,6 +146,12 @@ const allSchemas = [
     <script type="application/ld+json" set:html={JSON.stringify(allSchemas.length === 1 ? allSchemas[0] : allSchemas)} />
   )}
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Redirect invite/recovery/confirmation tokens to /admin/
+    if (window.location.hash && /(invite|recovery|confirmation)_token/.test(window.location.hash)) {
+      window.location.href = '/admin/' + window.location.hash;
+    }
+  </script>
 </head>
 
 <body class="min-h-screen flex flex-col">

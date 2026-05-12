@@ -1,43 +1,92 @@
-# Astro Starter Kit: Minimal
+# SoloIT – Premium Freelance Website
 
-```sh
-npm create astro@latest -- --template minimal
+Nowoczesna, statyczna strona internetowa zbudowana w [Astro](https://astro.build) z Tailwind CSS. 
+Skoncentrowana na tworzeniu stron WWW (WordPress), automatyzacji procesów i serwisie IT z dojazdem na Śląsku.
+
+🌐 **Live:** [https://soloit.pl](https://soloit.pl)
+
+---
+
+## 🚀 Technologie
+
+- **Astro 6** – ultra-szybki generator stron statycznych
+- **Tailwind CSS 4** – utility-first CSS
+- **Decap CMS** – panel admina do zarządzania blogiem (`/admin/`)
+- **TypeScript** – typowanie
+- **Netlify** – hosting + CI/CD
+
+---
+
+## 📁 Struktura projektu
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
+├── public/                  # Statyczne assety (favicon, logo, admin CMS)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/          # Reużywalne komponenty Astro
+│   ├── content/posts/       # Wpisy blogowe (Markdown)
+│   ├── layouts/             # Layouty stron
+│   ├── pages/               # Routing (Astro file-based)
+│   └── styles/              # Globalne style + Tailwind
+├── astro.config.mjs         # Konfiguracja Astro
+├── netlify.toml             # Konfiguracja Netlify
+└── content.config.ts        # Schema content collections
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 📝 Dodawanie wpisów na bloga
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Opcja 1: Decap CMS (najprostsza)
+Wejdź na `https://soloit.pl/admin/`, zaloguj się i dodaj wpis przez panel graficzny.
 
-## 🧞 Commands
+### Opcja 2: Markdown w VS Code
+Twórz pliki w `src/content/posts/nazwa-pliku.md`:
 
-All commands are run from the root of the project, from a terminal:
+```md
+---
+title: "Tytuł wpisu"
+description: "Opis SEO (max 200 znaków)"
+pubDate: 2025-05-11
+category: "Strony WWW"
+tags: ["wordpress", "seo"]
+featured: false
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Tu piszesz treść w Markdownie.
+```
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🛠️ Lokalny development
+
+```bash
+# Instalacja zależności
+npm install
+
+# Serwer deweloperski (localhost:4321)
+npm run dev
+
+# Build produkcyjny
+npm run build
+
+# Preview buildu
+npm run preview
+```
+
+---
+
+## 📦 Deploy
+
+Projekt automatycznie deployuje się na Netlify po każdym pushu do brancha `main` (GitHub → Netlify).
+
+Ręczny deploy:
+```bash
+npm run build
+# Wgraj zawartość folderu `dist/` na Netlify
+```
+
+---
+
+## 📄 Licencja
+
+Wszelkie prawa zastrzeżone © SoloIT.

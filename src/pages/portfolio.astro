@@ -3,63 +3,80 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = [
   {
-    title: 'Klinika Medyczna',
-    category: 'Strona firmowa',
-    tags: 'WordPress · Elementor · SEO',
-    colors: ['from-teal-900', 'to-emerald-950'],
-    blocks: [
-      { h: 'h-4', w: 'w-1/3', bg: 'bg-gold/20' },
-      { h: 'h-10', w: 'w-2/3', bg: 'bg-white/10' },
-      { h: 'h-3', w: 'w-full', bg: 'bg-white/5' },
-      { h: 'h-3', w: 'w-5/6', bg: 'bg-white/5' },
-      { h: 'h-8', w: 'w-24', bg: 'bg-gold/30', mt: true }
+    title: 'Salon Kosmetyczny "Glow"',
+    category: 'Strona firmowa · WordPress',
+    tags: 'Elementor · Rezerwacje · SEO lokalne',
+    gradient: 'from-rose-950 via-pink-950 to-rose-900',
+    elements: [
+      { type: 'nav', items: 4 },
+      { type: 'hero', title: 'Salon Glow', subtitle: true, cta: true },
+      { type: 'grid', cols: 3, items: [
+        { h: 'h-16', bg: 'bg-white/10' },
+        { h: 'h-16', bg: 'bg-white/10' },
+        { h: 'h-16', bg: 'bg-white/10' }
+      ]},
+      { type: 'footer' }
     ]
   },
   {
-    title: 'Sklep Odzieżowy',
-    category: 'WooCommerce',
-    tags: 'WooCommerce · Płatności · Filtry',
-    colors: ['from-rose-900', 'to-pink-950'],
-    grid: true
-  },
-  {
-    title: 'Landing SaaS',
-    category: 'Landing page',
-    tags: 'Astro · Tailwind · Konwersja',
-    colors: ['from-indigo-900', 'to-violet-950'],
-    center: true
-  },
-  {
-    title: 'Restauracja',
-    category: 'Strona firmowa',
-    tags: 'WordPress · Menu online · Rezerwacje',
-    colors: ['from-amber-900', 'to-orange-950'],
-    blocks: [
-      { h: 'h-4', w: 'w-1/2', bg: 'bg-gold/20' },
-      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
-      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
-      { h: 'h-8', w: 'w-full', bg: 'bg-white/5' },
+    title: 'Sklep Budowlany "Dach-Mur"',
+    category: 'WooCommerce · Sklep online',
+    tags: 'WooCommerce · Płatności · 200+ produktów',
+    gradient: 'from-amber-950 via-yellow-950 to-amber-900',
+    elements: [
+      { type: 'nav', items: 5 },
+      { type: 'hero', title: 'Materiały budowlane', subtitle: true, cta: true },
+      { type: 'products', count: 4 },
+      { type: 'footer' }
     ]
   },
   {
-    title: 'Blog Korporacyjny',
-    category: 'Blog',
-    tags: 'WordPress · Gutenberg · AMP',
-    colors: ['from-slate-800', 'to-slate-950'],
-    blocks: [
-      { h: 'h-4', w: 'w-1/3', bg: 'bg-gold/20' },
-      { h: 'h-6', w: 'w-full', bg: 'bg-white/10' },
-      { h: 'h-3', w: 'w-full', bg: 'bg-white/5' },
-      { h: 'h-3', w: 'w-4/5', bg: 'bg-white/5' },
-      { h: 'h-20', w: 'w-full', bg: 'bg-white/5', mt: true }
+    title: 'Kancelaria Prawna Kowalski',
+    category: 'Landing page · WordPress',
+    tags: 'Konwersja · Formularz · Blog',
+    gradient: 'from-slate-900 via-blue-950 to-slate-900',
+    elements: [
+      { type: 'nav', items: 4 },
+      { type: 'hero', title: 'Kancelaria Kowalski', subtitle: true, cta: true },
+      { type: 'features', count: 3 },
+      { type: 'footer' }
     ]
   },
   {
-    title: 'Salon Samochodowy',
-    category: 'Strona firmowa',
-    tags: 'WordPress · Galeria · Formularze',
-    colors: ['from-cyan-900', 'to-blue-950'],
-    grid: true
+    title: 'Pizzeria "La Mamma"',
+    category: 'Strona firmowa · Menu online',
+    tags: 'WordPress · Menu · Zamówienia',
+    gradient: 'from-red-950 via-orange-950 to-red-900',
+    elements: [
+      { type: 'nav', items: 4 },
+      { type: 'hero', title: 'La Mamma', subtitle: true, cta: true },
+      { type: 'menu', count: 6 },
+      { type: 'footer' }
+    ]
+  },
+  {
+    title: 'Firma Transportowa "Speed-Trans"',
+    category: 'Strona korporacyjna · WordPress',
+    tags: 'Elementor · Galeria · Kalkulator',
+    gradient: 'from-emerald-950 via-teal-950 to-emerald-900',
+    elements: [
+      { type: 'nav', items: 5 },
+      { type: 'hero', title: 'Speed-Trans', subtitle: true, cta: true },
+      { type: 'stats', values: ['50+', '100%', '24h'] },
+      { type: 'footer' }
+    ]
+  },
+  {
+    title: 'Studio Fotograficzne "Focus"',
+    category: 'Portfolio · Galeria',
+    tags: 'WordPress · Lightbox · Rezerwacje',
+    gradient: 'from-violet-950 via-purple-950 to-violet-900',
+    elements: [
+      { type: 'nav', items: 4 },
+      { type: 'hero', title: 'Studio Focus', subtitle: true, cta: true },
+      { type: 'gallery', count: 6 },
+      { type: 'footer' }
+    ]
   }
 ];
 
@@ -102,41 +119,110 @@ const schema = {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, i) => (
           <div class="reveal mockup-frame group" style={`transition-delay: ${i * 100}ms`}>
-            <div class={`aspect-[4/3] bg-gradient-to-br ${project.colors[0]} ${project.colors[1]} p-4 flex flex-col`}>
-              <div class="flex items-center gap-2 mb-3">
-                <div class="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-                <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-                <div class="w-2.5 h-2.5 rounded-full bg-green-400/60" />
-                <div class="flex-1 h-5 rounded bg-white/5 ml-2" />
+            <div class={`aspect-[4/3] bg-gradient-to-br ${project.gradient} p-3 flex flex-col overflow-hidden relative`}>
+              {/* Browser chrome */}
+              <div class="flex items-center gap-1.5 mb-2 shrink-0">
+                <div class="w-2 h-2 rounded-full bg-red-400/50" />
+                <div class="w-2 h-2 rounded-full bg-yellow-400/50" />
+                <div class="w-2 h-2 rounded-full bg-green-400/50" />
+                <div class="flex-1 h-3 rounded bg-white/5 ml-1" />
               </div>
-              <div class="flex-1 rounded bg-white/[0.03] p-3 space-y-2 flex flex-col">
-                {project.center && (
-                  <div class="flex-1 flex flex-col items-center justify-center text-center space-y-2">
-                    <div class="h-4 w-3/4 rounded bg-gold/20" />
-                    <div class="h-3 w-full rounded bg-white/5" />
-                    <div class="h-3 w-5/6 rounded bg-white/5" />
-                    <div class="h-8 w-32 rounded bg-gold/30 mt-2" />
+              
+              {/* Mockup content */}
+              <div class="flex-1 rounded bg-black/20 p-2 flex flex-col gap-1.5 overflow-hidden">
+                {/* Nav */}
+                <div class="flex items-center justify-between gap-1 mb-1">
+                  <div class="h-2.5 w-8 rounded bg-gold/30" />
+                  <div class="flex gap-1">
+                    {Array.from({ length: project.elements[0].items || 4 }).map(() => (
+                      <div class="h-1.5 w-6 rounded bg-white/10" />
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Hero */}
+                <div class="flex-1 flex flex-col items-center justify-center text-center gap-1.5 py-2">
+                  <div class="h-3 w-20 rounded bg-gold/40" />
+                  <div class="h-2 w-32 rounded bg-white/10" />
+                  <div class="h-2 w-24 rounded bg-white/10" />
+                  <div class="h-5 w-16 rounded bg-gold/30 mt-1" />
+                </div>
+                
+                {/* Content preview based on project type */}
+                {project.title.includes('Sklep') && (
+                  <div class="grid grid-cols-4 gap-1">
+                    {Array.from({ length: 4 }).map(() => (
+                      <div class="space-y-1">
+                        <div class="aspect-square rounded bg-white/5" />
+                        <div class="h-1.5 w-full rounded bg-white/10" />
+                        <div class="h-2 w-3/4 rounded bg-gold/20" />
+                      </div>
+                    ))}
                   </div>
                 )}
-                {project.grid && (
-                  <>
-                    <div class="grid grid-cols-2 gap-2 mb-2">
-                      <div class="aspect-square rounded bg-white/5" />
-                      <div class="aspect-square rounded bg-white/5" />
-                    </div>
-                    <div class="h-3 w-1/2 rounded bg-gold/20" />
-                    <div class="h-3 w-full rounded bg-white/5" />
-                    <div class="h-6 w-20 rounded bg-gold/30 mt-auto" />
-                  </>
+                {project.title.includes('Kancelaria') && (
+                  <div class="grid grid-cols-3 gap-1.5">
+                    {Array.from({ length: 3 }).map(() => (
+                      <div class="flex flex-col items-center gap-1 py-1">
+                        <div class="w-6 h-6 rounded-full bg-gold/15" />
+                        <div class="h-1.5 w-10 rounded bg-white/10" />
+                        <div class="h-1 w-8 rounded bg-white/5" />
+                      </div>
+                    ))}
+                  </div>
                 )}
-                {project.blocks && project.blocks.map(b => (
-                  <div class={`${b.h} ${b.w} rounded ${b.bg} ${b.mt ? 'mt-auto' : ''}`} />
-                ))}
+                {project.title.includes('Pizzeria') && (
+                  <div class="grid grid-cols-2 gap-1">
+                    {Array.from({ length: 4 }).map(() => (
+                      <div class="flex items-center gap-1.5 rounded bg-white/5 p-1">
+                        <div class="w-5 h-5 rounded bg-gold/10 shrink-0" />
+                        <div class="flex-1 space-y-0.5">
+                          <div class="h-1.5 w-full rounded bg-white/10" />
+                          <div class="h-2 w-6 rounded bg-gold/25" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {project.title.includes('Transport') && (
+                  <div class="grid grid-cols-3 gap-2 py-1">
+                    {['50+', '100%', '24h'].map(v => (
+                      <div class="text-center space-y-0.5">
+                        <div class="h-3 w-8 mx-auto rounded bg-gold/30" />
+                        <div class="h-1 w-10 mx-auto rounded bg-white/10" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {project.title.includes('Fotograficzne') && (
+                  <div class="grid grid-cols-3 gap-1">
+                    {Array.from({ length: 6 }).map(() => (
+                      <div class="aspect-square rounded bg-white/5" />
+                    ))}
+                  </div>
+                )}
+                {project.title.includes('Kosmetyczny') && (
+                  <div class="grid grid-cols-3 gap-1">
+                    {Array.from({ length: 3 }).map(() => (
+                      <div class="space-y-1">
+                        <div class="h-6 rounded bg-white/5" />
+                        <div class="h-1.5 w-full rounded bg-white/10" />
+                        <div class="h-2 w-1/2 rounded bg-gold/20" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Footer */}
+                <div class="mt-auto pt-1 border-t border-white/5 flex justify-center">
+                  <div class="h-1.5 w-16 rounded bg-white/5" />
+                </div>
               </div>
             </div>
+            
             <div class="p-4">
-              <h3 class="font-display font-semibold text-cream mb-1">{project.title}</h3>
-              <p class="text-sm text-cream-dim mb-2">{project.category}</p>
+              <h3 class="font-display font-semibold text-cream mb-1 group-hover:text-gold transition-colors">{project.title}</h3>
+              <p class="text-sm text-cream-dim mb-1.5">{project.category}</p>
               <p class="text-xs text-cream-dim/60 font-mono">{project.tags}</p>
             </div>
           </div>
@@ -145,11 +231,12 @@ const schema = {
     </div>
   </section>
 
+  {/* CTA */}
   <section class="py-16 bg-void-light">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="font-display font-bold text-2xl text-cream mb-4">Chcesz podobną stronę?</h2>
-      <p class="text-cream-muted mb-8">Opisz swoją branżę, a ja przygotuję projekt dopasowany do Twoich potrzeb.</p>
-      <a href="mailto:kontakt@soloit.pl" class="btn-primary">Darmowa wycena</a>
+      <p class="text-cream-muted mb-8">Opisz swoją branżę, a ja przygotuję projekt dopasowany do Twoich potrzeb – od wizytówki po rozbudowany sklep.</p>
+      <a href="mailto:soloitkontakt@gmail.com" class="btn-primary">Darmowa wycena</a>
     </div>
   </section>
 </BaseLayout>
