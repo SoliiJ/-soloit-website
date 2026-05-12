@@ -21,9 +21,9 @@ const schema = {
   <section class="relative min-h-[95vh] flex items-center overflow-hidden pt-20">
     <!-- Video background -->
     <video
+      id="hero-video"
       autoplay
       muted
-      loop
       playsinline
       preload="auto"
       class="absolute inset-0 w-full h-full object-cover"
@@ -31,6 +31,15 @@ const schema = {
     >
       <source src="/videos/hero.mp4" type="video/mp4" />
     </video>
+    <script>
+      const v = document.getElementById('hero-video');
+      if (v) {
+        v.addEventListener('ended', () => {
+          v.pause();
+          v.currentTime = v.duration || 0;
+        });
+      }
+    </script>
     <!-- Dark overlay for text readability -->
     <div class="absolute inset-0 bg-void/70" />
     <div class="absolute inset-0 bg-gradient-to-b from-void/40 via-transparent to-void pointer-events-none" />
@@ -79,6 +88,10 @@ const schema = {
         </div>
       </div>
     </div>
+
+    <!-- Floating orbs -->
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none animate-float hidden md:block" />
+    <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gold/3 rounded-full blur-3xl pointer-events-none animate-float-slow hidden md:block" />
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
@@ -258,8 +271,74 @@ const schema = {
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- GOOGLE REVIEWS -->
   <section class="py-24 sm:py-32 bg-void-light relative overflow-hidden">
+    <div class="absolute inset-0 hero-mesh opacity-30" />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="pill mb-4 inline-flex">Opinie</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream mb-4">
+          Co mówią <span class="gradient-text">klienci?</span>
+        </h2>
+        <p class="text-cream-muted text-lg">
+          Sprawdź moje realne opinie na Google Maps lub przeczytaj kilka poniżej.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            name: 'Marek K.',
+            loc: 'Ruda Śląska',
+            text: '„Laptop odmówił posłuszeństwa w środku tygodnia, nie mogłem pracować. SoloIT przyjechał następnego dnia, po kilku godzinach miałem sprzęt z powrotem. Profesjonalnie, bez lania wody i uczciwa cena.”',
+            rating: 5
+          },
+          {
+            name: 'Anna W.',
+            loc: 'Mikołów',
+            text: '„WiFi w domu działało na połowie zasięgu od miesięcy. Po wizycie SoloIT mamy pełny zasięg w każdym kącie. Szybko, sprawnie, z objaśnieniem co i jak zostało zrobione.”',
+            rating: 5
+          },
+          {
+            name: 'Tomasz B.',
+            loc: 'Gliwice',
+            text: '„Potrzebowałem prostej strony dla swojej firmy usługowej. Efekt przeszedł moje oczekiwania – szybka, ładna i Google już ją widzi. Polecam każdemu kto szuka kogoś lokalnego i rzetelnego.”',
+            rating: 5
+          },
+        ].map((review, i) => (
+          <div class="reveal card-glow rounded-xl bg-surface p-8 border border-gold/10" style={`transition-delay: ${i * 100}ms`}>
+            <div class="flex gap-1 mb-4">
+              {Array.from({ length: review.rating }).map(() => (
+                <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              ))}
+            </div>
+            <blockquote class="text-cream-muted leading-relaxed mb-6 text-sm">
+              {review.text}
+            </blockquote>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center font-display font-bold text-gold text-sm">
+                {review.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div>
+                <div class="font-display font-medium text-cream text-sm">{review.name}</div>
+                <div class="text-xs text-cream-dim">{review.loc}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="https://www.google.com/search?q=soloit+ruda+śląska+opinie" target="_blank" rel="noopener" class="btn-secondary">
+          Zobacz wszystkie opinie na Google
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 sm:py-32 relative overflow-hidden">
     <div class="absolute inset-0 hero-mesh opacity-50" />
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <h2 class="reveal font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-cream mb-6">
