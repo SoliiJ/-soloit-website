@@ -1,42 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+/* 
+  WRZUCANIE WŁASNYCH ZDJĘĆ:
+  1. Wygeneruj obrazki w AI (np. Midjourney, DALL-E, Leonardo)
+  2. Zapisz je w folderze: public/images/portfolio/
+  3. Zamień nazwy plików poniżej lub podmień pliki w folderze
+  4. Idealne wymiary: 1200x900px (proportion 4:3)
+  5. Po zmianie: git add -A && git commit -m "nowe zdjecia portfolio" && git push
+*/
+
 const projects = [
   {
     title: 'Salon Kosmetyczny "Glow"',
     category: 'Strona firmowa · WordPress',
     tags: 'Elementor · Rezerwacje · SEO lokalne',
-    image: '/images/portfolio/salon-glow.png',
+    image: '/images/portfolio/salon-kosmetyczny.jpg',
   },
   {
     title: 'Sklep Budowlany "Dach-Mur"',
     category: 'WooCommerce · Sklep online',
     tags: 'WooCommerce · Płatności · 200+ produktów',
-    image: '/images/portfolio/sklep-budowlany.png',
+    image: '/images/portfolio/sklep-budowlany.jpg',
   },
   {
     title: 'Kancelaria Prawna Kowalski',
     category: 'Landing page · WordPress',
     tags: 'Konwersja · Formularz · Blog',
-    image: '/images/portfolio/kancelaria.png',
+    image: '/images/portfolio/kancelaria-prawna.jpg',
   },
   {
     title: 'Pizzeria "La Mamma"',
     category: 'Strona firmowa · Menu online',
     tags: 'WordPress · Menu · Zamówienia',
-    image: '/images/portfolio/pizzeria.png',
+    image: '/images/portfolio/pizzeria.jpg',
   },
   {
     title: 'Firma Transportowa "Speed-Trans"',
     category: 'Strona korporacyjna · WordPress',
     tags: 'Elementor · Galeria · Kalkulator',
-    image: '/images/portfolio/transport.png',
+    image: '/images/portfolio/firma-transportowa.jpg',
   },
   {
     title: 'Studio Fotograficzne "Focus"',
     category: 'Portfolio · Galeria',
     tags: 'WordPress · Lightbox · Rezerwacje',
-    image: '/images/portfolio/fotografia.png',
+    image: '/images/portfolio/studio-fotograficzne.jpg',
   },
 ];
 
